@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fruntend/static/css/main.7c5fca8a.css",
+    "main.js": "/fruntend/static/js/main.fdb4846b.js",
+    "index.html": "/fruntend/index.html",
+    "main.7c5fca8a.css.map": "/fruntend/static/css/main.7c5fca8a.css.map",
+    "main.fdb4846b.js.map": "/fruntend/static/js/main.fdb4846b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7c5fca8a.css",
+    "static/js/main.fdb4846b.js"
+  ]
+}
