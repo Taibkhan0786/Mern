@@ -1,0 +1,60 @@
+import React, { useEffect, useState } from 'react'
+import SideBar from '../SideBar'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+
+import { updateMaincategory, getMaincategory } from "../../../Store/ActionCreators/MaincategoryActionCreators"
+export default function AdminUpdateMaincategory() {
+  let dispatch = useDispatch()
+  let navigate = useNavigate()
+  let { _id } = useParams()
+  let [name, setName] = useState("")
+  let allStateData = useSelector((state) => state.MaincategoryStateData)
+  function getInputData(e) {
+    setName(e.target.value)
+  }
+  function postData(e) {
+    e.preventDefault()
+    let item = allStateData.find((item) => item.name == name.current)
+    if (item)
+      alert("Maincategory Already Exist!!!")
+    else {
+      dispatch(updateMaincategory({ _id: _id, name: name }))
+      navigate("/admin-maincategory")
+    }
+  }
+  function getAPIData() {
+    dispatch(getMaincategory())
+    if (allStateData.length) {
+      let item = allStateData.find((item) => item._id === _id)
+      if (item)
+        setName(item.name)
+    }
+  }
+  useEffect(() => {
+    getAPIData()
+  }, [allStateData.length])
+  return (
+    <div className='container-fluid my-3'>
+      <div className="row">
+        <div className="col-md-2">
+          <SideBar />
+        </div>
+        <div className="col-md-10">
+          <h5 className='bg-primary p-2 mb-2 text-light rounded text-center'>Maincategory</h5>
+          <form onSubmit={postData}>
+            <div className="mb-3">
+              <label>Name</label>
+              <input type="text" name="name" onChange={getInputData} placeholder='Enter Maincategory Name ' className='form-control' value={name} />
+            </div>
+            <div className="mb-3 btn-group w-100">
+              <button type="reset" className='btn btn-secondary w-50'>Reset</button>
+              <button type="submit" className='btn btn-primary w-50'>Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
