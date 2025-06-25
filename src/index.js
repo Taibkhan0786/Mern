@@ -7,8 +7,8 @@ import Store from './Store/Store';
 var root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
     <>
-        <Provider store={Store}>
-            <App/>
-        </Provider>
+<BrowserRouter basename="/Mern">
+  <App />
+</BrowserRouter>
     </>
 )
